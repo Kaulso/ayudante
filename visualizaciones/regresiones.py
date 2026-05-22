@@ -1,6 +1,7 @@
 import seaborn as sns
 from matplotlib import pyplot as plt
 import numpy as np
+from sklearn.metrics import r2_score
 
 def par_real_predicho(y_test, y_pred, magnitud=""):
     # 1. Crear la cuadrícula conjunta para tener control total
