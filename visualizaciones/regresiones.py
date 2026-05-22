@@ -100,6 +100,27 @@ def par_real_predicho_res(y_test, y_pred, magnitud="", mostrar_normal=True):
         'rmse': np.sqrt(np.mean(residuos**2))
     }
 
+from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
+
+def grafica_arbol(model, X):
+    plt.figure(figsize=(20,10))
+    plot_tree(model, filled=True, feature_names=X.columns, rounded=True, fontsize=10)
+    plt.title("Árbol de Decisión de Regresión")
+    plt.show()
+
+def calcula_errores(y_test, y_pred):
+    from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+    errores = pd.DataFrame()
+    errores.mse = mean_squared_error(y_test, y_pred)
+    errores.mae = mean_absolute_error(y_test, y_pred)
+    errores.r2 = r2_score(y_test, y_pred)
+
+    print("MSE:", errores.mse)
+    print("MAE:", errores.mae)
+    print("R2:", errores.r2)
+    return errores
+
 if __name__ == "__main__":
     import pandas as pd
     y_test = pd.Series([1, 2, 3])
